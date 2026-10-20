@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@source "./*.py";
+@source "./js/*.js";
+@source "../../docs/**/*.md";
+@theme {
+  --color-ink: #1F1F28;
+  --color-rail: #181820;
+  --color-code: #16161D;
+  --color-panel: #2A2A37;
+  --color-border: #363646;
+  --color-paper: #DCD7BA;
+  --color-muted: #C8C093;
+  --color-blue: #7E9CD8;
+  --color-aqua: #7AA89F;
+  --color-green: #98BB6C;
+  --color-pink: #D27E99;
+  --color-orange: #FFA066;
+  --color-violet: #957FB8;
+  --color-selection: #223249;
+  --syntax-comment: #727169;
+  --syntax-punct: #9CABCA;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "CaskaydiaMono Nerd Font", monospace;
+}
+[data-theme="lotus"] {
+  color-scheme: light;
+  --color-ink: #f2ecbc;
+  --color-rail: #dcd5ac;
+  --color-code: #d5cea3;
+  --color-panel: #e7dba0;
+  --color-border: #b5cbd2;
+  --color-paper: #545464;
+  --color-muted: #43436c;
+  --color-blue: #4d699b;
+  --color-aqua: #597b75;
+  --color-green: #6f894e;
+  --color-pink: #b35b79;
+  --color-orange: #cc6d00;
+  --color-violet: #624c83;
+  --color-selection: #c9cbd1;
+  --syntax-comment: #716e61;
+  --syntax-punct: #4e8ca2;
+}
+[data-theme="dragon"] {
+  color-scheme: dark;
+  --color-ink: #181616;
+  --color-rail: #12120f;
+  --color-code: #0d0c0c;
+  --color-panel: #282727;
+  --color-border: #393836;
+  --color-paper: #c5c9c5;
+  --color-muted: #c8c093;
+  --color-blue: #8ba4b0;
+  --color-aqua: #8ea4a2;
+  --color-green: #8a9a7b;
+  --color-pink: #a292a3;
+  --color-orange: #b6927b;
+  --color-violet: #8992a7;
+  --color-selection: #223249;
+  --syntax-comment: #737c73;
+  --syntax-punct: #9e9b93;
+}
+@font-face {
+  font-family: "CaskaydiaMono Nerd Font";
+  src: url("fonts/CaskaydiaMonoNerdFont-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CaskaydiaMono Nerd Font";
+  src: url("fonts/CaskaydiaMonoNerdFont-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@layer base {
+  html { color-scheme: dark; scroll-padding-top: 1rem; }
+  body { @apply bg-ink text-paper font-sans antialiased; }
+  a, button { @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue; }
+  button { @apply cursor-pointer; }
+  code, pre { @apply font-mono; font-variant-ligatures: none; }
+  ::selection { background: var(--color-selection); color: var(--color-paper); }
+}
+@layer components {
+  .theme-flipper { @apply relative block h-4 w-4 [transform-style:preserve-3d]; }
+  .theme-face { @apply absolute inset-0 block [backface-visibility:hidden] [transform:rotateY(180deg)] transition-transform duration-500 ease-in-out motion-reduce:transition-none; }
+  [data-theme="wave"] [data-theme-icon="wave"],
+  [data-theme="lotus"] [data-theme-icon="lotus"],
+  [data-theme="dragon"] [data-theme-icon="dragon"] { @apply [transform:rotateY(0deg)]; }
+  .nav-rail { @apply overflow-y-scroll [scrollbar-gutter:stable] [scrollbar-color:var(--color-border)_var(--color-rail)] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-rail [&::-webkit-scrollbar-thumb]:bg-border; }
+  .nav-caret { @apply shrink-0 font-mono text-xs font-normal leading-none; }
+  .nav-category { @apply sticky top-0 z-10 mt-2 flex items-center border-y border-r border-border bg-panel px-4 py-2 text-aqua hover:bg-selection focus-visible:bg-selection; }
+  #category-guides > .nav-category { margin-top: 0; color: var(--color-orange); }
+  .search-launch { @apply flex w-full items-center gap-2 rounded-lg border border-border bg-code px-3 py-2.5 text-xs text-muted hover:border-aqua hover:text-paper; }
+  .quick-search { @apply fixed inset-x-0 top-[12vh] bottom-auto m-0 mx-auto w-[calc(100%_-_2rem)] max-w-2xl overflow-hidden rounded-xl border border-border bg-ink p-0 text-paper shadow-2xl; }
+  .quick-search::backdrop { background: rgb(0 0 0 / 60%); backdrop-filter: blur(4px); }
+  .search-result { @apply mx-2 mb-1 cursor-pointer rounded-lg px-4 py-3; }
+  .search-result[aria-selected="true"] { @apply bg-selection; }
+  .api-section { @apply grid min-w-0 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]; }
+  .description { @apply min-w-0 border-b border-border px-6 py-8 lg:px-10; }
+  .api-heading .description { @apply pt-6; }
+  .examples { @apply min-w-0 bg-code px-6 py-8 lg:px-8; }
+  .badge { @apply inline-flex items-center gap-1 rounded border border-current/25 px-2 py-0.5 text-[10px] font-medium tracking-wide; }
+  .nav-entry { @apply flex items-center gap-1 border-l-2 border-transparent px-4 py-1.5 font-mono text-[11px] leading-5 hover:bg-panel focus-visible:bg-panel; }
+  .nav-entry[aria-current="location"] { @apply border-blue bg-selection; }
+  .nav-entry > span:first-child { min-width: 0; margin-left: auto; overflow-wrap: anywhere; text-align: right; }
+  .nav-count { order: -1; margin-left: auto; flex-shrink: 0; color: var(--syntax-comment); }
+  .nav-entry:has(.nav-count) > span:first-child { margin-left: 0; }
+  .nav-eye { @apply invisible order-first flex shrink-0 items-center pr-2 text-aqua; }
+  .nav-entry[data-viewed="true"] .nav-eye { visibility: visible; }
+  .nav-group-link { @apply flex w-full items-center gap-2 border-l-2 border-transparent px-4 py-3 font-mono text-xs text-muted underline-offset-4 hover:bg-panel hover:text-paper; }
+  .nav-group-link:hover .nav-group-label { text-decoration-line: underline; }
+  .nav-group-link[data-active="true"] { @apply border-blue bg-selection text-blue; outline: none; }
+  .nav-group-link[data-active="true"] .nav-group-label { text-decoration-line: none; }
+  .nav-letter-slot { @apply inline-flex w-4 shrink-0 items-center; }
+  .nav-letter { @apply grid h-4 w-4 place-items-center rounded border border-border bg-panel p-0 font-sans text-[9px] font-bold leading-none text-aqua; }
+  /* The bar scrolls an inner element so this rounded border can clip its square ends. */
+  .signature { @apply mt-5 overflow-hidden rounded-lg border border-border bg-code text-[12px] leading-6; }
+  pre.signature > code { @apply block overflow-x-auto p-4 [scrollbar-color:var(--color-border)_var(--color-rail)] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-rail [&::-webkit-scrollbar-thumb]:bg-border; }
+  div.signature { @apply p-4; }
+  .signature pre { @apply overflow-x-auto [scrollbar-color:var(--color-border)_var(--color-rail)] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-rail [&::-webkit-scrollbar-thumb]:bg-border; }
+  .source-code { @apply overflow-x-auto text-[12px] leading-6; tab-size: 4; }
+  .examples .source-code { @apply [scrollbar-color:var(--color-border)_var(--color-rail)] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-rail [&::-webkit-scrollbar-thumb]:bg-border; }
+  .code-line { display: block; min-height: 1.5rem; }
+  .code-line:target { @apply bg-selection scroll-mt-28; }
+  .line-number { @apply mr-5 inline-block w-9 select-none text-right text-muted/50; }
+  .call-line { background: var(--color-selection); }
+  .call-token { @apply rounded bg-blue/20 px-0.5 font-bold underline decoration-blue underline-offset-4; color: inherit; }
+  .tok-keyword { color: var(--color-violet); }
+  .tok-string { color: var(--color-green); }
+  .tok-number { color: var(--color-pink); }
+  .tok-comment { color: var(--syntax-comment); }
+  .tok-type { color: var(--color-aqua); }
+  .tok-function { color: var(--color-blue); }
+  .tok-punct { color: var(--syntax-punct); }
+  .tok-identifier { color: var(--color-paper); }
+  .markdown { @apply mt-5 text-sm leading-7 text-muted; }
+  .markdown p { @apply my-4; }
+  .markdown h1, .markdown h2, .markdown h3 { @apply mt-8 mb-3 font-bold text-paper; }
+  .markdown h1 { @apply text-2xl; }
+  .markdown h2 { @apply text-xl; }
+  .markdown h3 { @apply text-base; }
+  .markdown a { @apply text-blue underline underline-offset-4; }
+  .markdown ul { @apply my-4 list-disc pl-6; }
+  .markdown ol { @apply my-4 list-decimal pl-6; }
+  .markdown pre { @apply my-5 overflow-x-auto rounded-lg bg-code p-5 text-xs leading-6 text-paper; }
+  .markdown code { @apply font-mono text-aqua; }
+  .markdown pre code { @apply text-paper; }
+  .markdown blockquote { @apply my-5 border-l-2 border-aqua bg-panel px-5 py-1; }
+  .markdown table { @apply my-5 block max-w-full overflow-x-auto border-collapse text-left; }
+  .markdown th, .markdown td { @apply border border-border px-3 py-2; }
+  .markdown hr { @apply my-8 border-border; }
+  .guide-content { @apply px-6 pb-14 lg:px-10; }
+  .guide-heading { display: block; }
+  .guide-heading .examples { display: none; }
+  .guide-heading h1 { margin-left: 0; margin-right: 0; }
+  .prose-guide { @apply max-w-[100ch]; }
+}
