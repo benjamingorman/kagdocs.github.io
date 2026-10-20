@@ -1,0 +1,6 @@
+{
+  "name": "kag-api-docs",
+  "private": true,
+  "scripts": {"css": "tailwindcss -i theme.css --minify"},
+  "devDependencies": {"@tailwindcss/cli": "4.3.0", "tailwindcss": "4.3.0"}
+}
