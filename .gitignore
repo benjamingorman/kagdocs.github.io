@@ -1,0 +1,16 @@
+.directory
+Gemfile.lock
+_site/
+.sass-cache/
+
+# Generated documentation and local tool caches
+/build/
+**/node_modules/
+**/__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+docs.local.mk
+.pages-staging/
+.python-version

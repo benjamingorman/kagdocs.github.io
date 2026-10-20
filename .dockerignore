@@ -1,0 +1,10 @@
+.git
+old
+build
+**/node_modules
+**/.venv
+**/__pycache__
+**/*.pyc
+.env*
+docs.local.mk
+.pages-staging

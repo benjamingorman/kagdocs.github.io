@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/Relrin/tree-sitter-angelscript",
+  "revision": "4595504ef9ae3fc7d597a14fd09d9aebc5eaf8e6",
+  "sha256": {
+    "LICENSE": "b7d8b4ce916098961737e2148eba3a4d22d08abf31450605e1433cbe372e0657",
+    "grammar.js": "5958f33e62c50699e12e4a4b37b27e8ef45cfc535c9052d0f22784fe6a7a76de",
+    "src/node-types.json": "9802488ad468b6ba7ddf1739101e2a3f065d7fa79e84e0aec20fb48bb85916d4",
+    "src/parser.c": "855ed864267131b3e6d98a6b4fad09ed172c55abad716e19900ff2788077819a",
+    "src/scanner.c": "02a277b332c6be1aa5ee94e8a061f5aef12970bdce8dd2a338cb997d2ea51b1e",
+    "src/tree_sitter/parser.h": "180b893c8734778fd32f372dfbc27bd6ad1cd2221f26150b31256ff6716320d2",
+    "src/tree_sitter/alloc.h": "b29c1c9fb7cc82f58c84b376df1297d6e2737a1d655fd356db0859e3c29c2fea",
+    "src/tree_sitter/array.h": "31e60a1bff6f715afacce03b5b70efe42b58371b4f9595dd4af52a577ff9608c"
+  }
+}

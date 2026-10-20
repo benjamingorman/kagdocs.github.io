@@ -1,0 +1,20 @@
+{
+  "files": 570,
+  "parse_errors": [
+    {
+      "path": "Base/Rules/Challenge/Challenges/Challenge_Necromancer.as",
+      "errors": [
+        {
+          "kind": "error",
+          "line": 15,
+          "column": 7,
+          "text": "stats"
+        }
+      ]
+    }
+  ],
+  "skipped": {
+    "unresolved_overload": 186,
+    "damaged_scope": 1
+  }
+}

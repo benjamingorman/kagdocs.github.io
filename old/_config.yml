@@ -1,0 +1,42 @@
+# ----
+# Site
+
+title: KAGDocs
+description: Community-driven KAG Documentation
+url:
+permalink: pretty
+
+collections:
+  documentation:
+    title: Documentation
+    position: 1
+  script_api:
+    title: Scripting API
+    position: 2
+  rest_api:
+    title: REST API
+    position: 3
+  tcpr:
+    title: TCPR documentation
+    position: 4
+
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-minifier
+
+exclude:
+  - readme.md
+  - LICENCE
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
+types:
+  - fn
+  - var
+  - cl
